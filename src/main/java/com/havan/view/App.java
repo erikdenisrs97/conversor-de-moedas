@@ -1,7 +1,7 @@
 package com.havan.view;
 
 /**
- * Hello world!
+ * Conversor de Moedas
  *
  */
 public class App {
