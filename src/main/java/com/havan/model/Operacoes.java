@@ -1,5 +1,7 @@
 package com.havan.model;
 
+import java.math.BigDecimal;
+
 /**
  * Operações
  *
@@ -12,10 +14,12 @@ public class Operacoes {
   private String moedaOrigem;
   private String moedaDestino;
   private String data;
-  private String valorOriginal;
+  private BigDecimal valorOriginal;
+  private BigDecimal valorConvertido;
+  private BigDecimal taxaCobrada;
   
   public Operacoes(Integer id, String nomeCliente, String moedaOrigem, String moedaDestino, String data,
-      String valorOriginal, String valorConvertido, String taxaCobrada) {
+      BigDecimal valorOriginal, BigDecimal valorConvertido, BigDecimal taxaCobrada) {
     this.id = id;
     this.nomeCliente = nomeCliente;
     this.moedaOrigem = moedaOrigem;
@@ -26,35 +30,27 @@ public class Operacoes {
     this.taxaCobrada = taxaCobrada;
   }
 
-  private String valorConvertido;
-  private String taxaCobrada;
-  
-
-  public static void main(String[] args) {
-    
-  }
-
-  public String getTaxaCobrada() {
+  public BigDecimal getTaxaCobrada() {
     return taxaCobrada;
   }
 
-  public void setTaxaCobrada(String taxaCobrada) {
+  public void setTaxaCobrada(BigDecimal taxaCobrada) {
     this.taxaCobrada = taxaCobrada;
   }
 
-  public String getValorConvertido() {
+  public BigDecimal getValorConvertido() {
     return valorConvertido;
   }
 
-  public void setValorConvertido(String valorConvertido) {
+  public void setValorConvertido(BigDecimal valorConvertido) {
     this.valorConvertido = valorConvertido;
   }
 
-  public String getValorOriginal() {
+  public BigDecimal getValorOriginal() {
     return valorOriginal;
   }
 
-  public void setValorOriginal(String valorOriginal) {
+  public void setValorOriginal(BigDecimal valorOriginal) {
     this.valorOriginal = valorOriginal;
   }
 

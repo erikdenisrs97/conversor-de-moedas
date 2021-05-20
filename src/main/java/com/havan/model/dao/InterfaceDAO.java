@@ -1,11 +1,10 @@
 package com.havan.model.dao;
 
+import java.util.List;
+
 public interface InterfaceDAO<T> {
 
   public void inserir(T obj);
-  public void editar(T obj);
-  public void deletar(int id);
-  public T buscarPorID(int id);
   public List<T> listar();
 
 }
