@@ -12,15 +12,16 @@ import com.havan.model.Moeda;
 public class MoedaDAO implements InterfaceDAO<Moeda> {
 
   @Override
-  public void inserir(Moeda obj) {
+  public Moeda inserir(Moeda obj) {
     // TODO Auto-generated method stub
+    return null;
   }
 
   @Override
   public List<Moeda> listar() {
-    Connection conn = ConnectionDatabase.getConnection();
     List<Moeda> moedas = new ArrayList<Moeda>();
     try {
+      Connection conn = ConnectionDatabase.getConnection();
       Statement state = conn.createStatement();
       ResultSet result = state.executeQuery("SELECT * FROM moedas");
       while(result.next()) {
@@ -30,6 +31,7 @@ public class MoedaDAO implements InterfaceDAO<Moeda> {
         String valor = result.getString("valor");
         moedas.add(new Moeda(id, nome, unidadeMonetaria, valor));
       }
+      conn.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }

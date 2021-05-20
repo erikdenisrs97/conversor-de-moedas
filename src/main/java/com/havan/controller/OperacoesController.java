@@ -9,20 +9,18 @@ public class OperacoesController implements InterfaceController<Operacoes> {
 
   private OperacoesDAO dao;
 
-  OperacoesController() {
+  public OperacoesController() {
     dao = new OperacoesDAO();
   }
 
   @Override
   public Operacoes inserir(Operacoes obj) {
-    // TODO Auto-generated method stub
-    return null;
+    return dao.inserir(obj);
   }
 
   @Override
   public List<Operacoes> listar() {
-    // TODO Auto-generated method stub
-    return null;
+    return dao.listar();
   }
   
 }

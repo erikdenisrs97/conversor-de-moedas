@@ -9,20 +9,18 @@ public class MoedaController implements InterfaceController<Moeda> {
 
   private MoedaDAO dao;
 
-  MoedaController() {
+  public MoedaController() {
     dao = new MoedaDAO();
   }
 
   @Override
   public Moeda inserir(Moeda obj) {
-    // TODO Auto-generated method stub
-    return null;
+    return dao.inserir(obj);
   }
 
   @Override
   public List<Moeda> listar() {
-    // TODO Auto-generated method stub
-    return null;
+    return dao.listar();
   }
   
 }

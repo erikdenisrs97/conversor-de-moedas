@@ -18,9 +18,8 @@ public class Operacoes {
   private BigDecimal valorConvertido;
   private BigDecimal taxaCobrada;
   
-  public Operacoes(Integer id, String nomeCliente, String moedaOrigem, String moedaDestino, String data,
+  public Operacoes(String nomeCliente, String moedaOrigem, String moedaDestino, String data,
       BigDecimal valorOriginal, BigDecimal valorConvertido, BigDecimal taxaCobrada) {
-    this.id = id;
     this.nomeCliente = nomeCliente;
     this.moedaOrigem = moedaOrigem;
     this.moedaDestino = moedaDestino;
