@@ -1,6 +1,8 @@
 package com.havan.model.dao;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,8 +15,22 @@ public class MoedaDAO implements InterfaceDAO<Moeda> {
 
   @Override
   public Moeda inserir(Moeda obj) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+    Connection conn = ConnectionDatabase.getConnection();
+    String nomeMoeda = obj.getNomeMoeda();
+    String unidadeMonetaria = obj.getUnidadeMonetaria();
+    BigDecimal valor = obj.getValor();
+    /* Query */
+    String query = "INSERT INTO moedas(nome, unidade_monetaria, valor) VALUES (?, ?, ?);";
+    PreparedStatement ps = conn.prepareStatement(query);
+    ps.setString(1, nomeMoeda);
+    ps.setString(2, unidadeMonetaria);
+    ps.setBigDecimal(3, valor);
+    ps.execute();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return obj;
   }
 
   @Override
@@ -25,11 +41,10 @@ public class MoedaDAO implements InterfaceDAO<Moeda> {
       Statement state = conn.createStatement();
       ResultSet result = state.executeQuery("SELECT * FROM moedas");
       while(result.next()) {
-        int id = result.getInt("id");
         String nome = result.getString("nome");
         String unidadeMonetaria = result.getString("unidade_monetaria");
-        String valor = result.getString("valor");
-        moedas.add(new Moeda(id, nome, unidadeMonetaria, valor));
+        BigDecimal valor = result.getBigDecimal("valor");
+        moedas.add(new Moeda(nome, unidadeMonetaria, valor));
       }
       conn.close();
     } catch (SQLException e) {

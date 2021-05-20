@@ -11,11 +11,10 @@ public class Moeda {
   private BigDecimal valor;
   private static final DecimalFormat FORMATADOR = new DecimalFormat("#,##0.00");
   
-  public Moeda(Integer id, String nomeMoeda, String unidadeMonetaria, String valor) {
-    this.id = id;
+  public Moeda(String nomeMoeda, String unidadeMonetaria, BigDecimal valor) {
     this.nomeMoeda = nomeMoeda;
     this.unidadeMonetaria = unidadeMonetaria;
-    this.valor = new BigDecimal(valor);
+    this.valor = valor;
   }
 
   public Integer getId() {

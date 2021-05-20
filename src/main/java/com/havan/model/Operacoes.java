@@ -1,6 +1,7 @@
 package com.havan.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * Operações
@@ -13,20 +14,32 @@ public class Operacoes {
   private String nomeCliente;
   private String moedaOrigem;
   private String moedaDestino;
-  private String data;
+  private LocalDate dataOperacao;
   private BigDecimal valorOriginal;
   private BigDecimal valorConvertido;
   private BigDecimal taxaCobrada;
   
-  public Operacoes(String nomeCliente, String moedaOrigem, String moedaDestino, String data,
+  public Operacoes(String nomeCliente, String moedaOrigem, String moedaDestino,
       BigDecimal valorOriginal, BigDecimal valorConvertido, BigDecimal taxaCobrada) {
     this.nomeCliente = nomeCliente;
     this.moedaOrigem = moedaOrigem;
     this.moedaDestino = moedaDestino;
-    this.data = data;
+    this.dataOperacao = LocalDate.now();
     this.valorOriginal = valorOriginal;
     this.valorConvertido = valorConvertido;
     this.taxaCobrada = taxaCobrada;
+  }
+
+  public Operacoes(Integer id, String nomeCliente, String moedaOrigem, String moedaDestino, LocalDate dataOperacao,
+    BigDecimal valorOriginal, BigDecimal valorConvertido, BigDecimal taxaCobrada) {
+  this.id = id;
+  this.nomeCliente = nomeCliente;
+  this.moedaOrigem = moedaOrigem;
+  this.moedaDestino = moedaDestino;
+  this.dataOperacao = dataOperacao;
+  this.valorOriginal = valorOriginal;
+  this.valorConvertido = valorConvertido;
+  this.taxaCobrada = taxaCobrada;
   }
 
   public BigDecimal getTaxaCobrada() {
@@ -53,12 +66,8 @@ public class Operacoes {
     this.valorOriginal = valorOriginal;
   }
 
-  public String getData() {
-    return data;
-  }
-
-  public void setData(String data) {
-    this.data = data;
+  public LocalDate getDataOperacao() {
+    return dataOperacao;
   }
 
   public String getMoedaDestino() {

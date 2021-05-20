@@ -14,7 +14,7 @@ public class App {
     BigDecimal valorOrigem = new BigDecimal("10.0");
     
     OperacoesController oc = new OperacoesController();
-    Operacoes o = new Operacoes("Erik", "teste", "ew", "240597", valorOrigem, valorOrigem, valorOrigem);
+    Operacoes o = new Operacoes("Erik", "teste", "ew", valorOrigem, valorOrigem, valorOrigem);
     oc.inserir(o);
   }
 }
