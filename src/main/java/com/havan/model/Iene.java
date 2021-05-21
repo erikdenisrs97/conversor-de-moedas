@@ -9,7 +9,7 @@ public class Iene extends Moeda {
 
   public Iene() {
     this.setNomeMoeda("Iene");
-    this.setUnidadeMonetaria("Y");
+    this.setUnidadeMonetaria("¥");
   }
 
   @Override
