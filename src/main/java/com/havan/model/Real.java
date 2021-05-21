@@ -1,11 +1,23 @@
 package com.havan.model;
 
+import java.math.BigDecimal;
+
 public class Real extends Moeda {
 
-  public Real(String nomeMoeda, String unidadeMonetaria, String valor) {
-    super("Real", "R$", "1.0");
+  private static final BigDecimal TAXA_DOLAR = new BigDecimal("10.0");
+  private static final BigDecimal TAXA_IENE = new BigDecimal("10.0");
+
+  public Real() {
+    this.setNomeMoeda("Real");
+    this.setUnidadeMonetaria("RS");
   }
 
+  public BigDecimal converteParaDolar(BigDecimal valor) {
+    return valor.multiply(TAXA_DOLAR);
+  }
 
+  public BigDecimal converteParaIene(BigDecimal valor) {
+    return valor.multiply(TAXA_IENE);
+  }
   
 }

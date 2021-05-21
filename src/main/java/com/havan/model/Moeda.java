@@ -4,21 +4,10 @@ import java.text.DecimalFormat;
 
 public abstract class Moeda {
   
-  private Integer id;
   private String nomeMoeda;
   private String unidadeMonetaria;
   private String valor;
   private static final DecimalFormat FORMATADOR = new DecimalFormat("#,##0.00");
-  
-  public Moeda(String nomeMoeda, String unidadeMonetaria, String valor) {
-    this.nomeMoeda = nomeMoeda;
-    this.unidadeMonetaria = unidadeMonetaria;
-    this.valor = valor;
-  }
-
-  public Integer getId() {
-    return id;
-  }
 
   public String getValor() {
     return valor;
@@ -42,10 +31,6 @@ public abstract class Moeda {
 
   public void setNomeMoeda(String nomeMoeda) {
     this.nomeMoeda = nomeMoeda;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
   }
 
 }

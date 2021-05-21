@@ -69,10 +69,5 @@ public class OperacoesDAO implements InterfaceDAO<Operacoes> {
     }
     return ops;
   }
-
-  @Override
-  public Operacoes procuraPorId(int id) {
-    return null;
-  }
   
 }
