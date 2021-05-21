@@ -34,10 +34,9 @@ public class App {
     System.out.println("O que você deseja fazer?");
     System.out.println("------------------------------");
     System.out.println("1 - Realizar Conversão");
-    System.out.println("2 - Ver Todas as Operações");
+    System.out.println("2 - Ver Operações");
     System.out.println("4 - Valor Total das Taxas Cobradas");
     System.out.println("3 - Ver Valor Total das Operações");
-    System.out.println("4 - Valor Total das Taxas Cobradas");
     System.out.println("------------------------------");
     int i = leitura.nextInt();
     leitura.nextLine();
@@ -73,9 +72,12 @@ public class App {
     Calculadora c = new Calculadora();
     taxaCobrada = c.TAXA_DE_CAMBIO;
     valorConvertido = c.converteMoeda(moedaOrigem, moedaDestino, valorOriginal);
+    System.out.println("Você converteu " + moedaOrigem + " para " + moedaDestino);
+    System.out.println("Valor da conversão: " + c.procuraMoeda(moedaDestino).getUnidadeMonetaria() + valorConvertido);
     operacao = new Operacoes(nomeCliente, moedaOrigem, moedaDestino, valorOriginal,
      valorConvertido, taxaCobrada);
     registrarOperacao.inserir(operacao);
+    System.out.println("Operação salva no banco de dados.");
     leitura.close();
   }
 
@@ -91,7 +93,14 @@ public class App {
   }
 
   void OperacoesPorCliente() {
-
+    List<Operacoes> ops = registrarOperacao.listarPorCliente("Havan");
+    System.out.println("######### LISTA DE OPERAÇÕES #########");
+    System.out.println("CLIENTE - DATA DA OPERAÇÃO - MOEDA ORIGEM - MOEDA DESTINO - VALOR ORIGINAL - VALOR CONVERTIDO - TAXA");
+    for(Operacoes operacao : ops) {
+      System.out.println(operacao.getNomeCliente() + "         " + operacao.getDataOperacao() 
+      + "         " + operacao.getMoedaOrigem() + "           " + operacao.getMoedaDestino() + "            " 
+      + operacao.getValorOriginal() + "            " + operacao.getValorConvertido() + "        " + operacao.getTaxaCobrada() + "%");
+    }
   }
 
   void OperacoesPorData() {

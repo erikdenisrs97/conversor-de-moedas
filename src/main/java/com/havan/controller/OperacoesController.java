@@ -22,5 +22,9 @@ public class OperacoesController implements InterfaceController<Operacoes> {
   public List<Operacoes> listar() {
     return dao.listar();
   }
+
+  public List<Operacoes> listarPorCliente(String nomeDoCliente) {
+    return dao.listarPorCliente(nomeDoCliente);
+  } 
   
 }

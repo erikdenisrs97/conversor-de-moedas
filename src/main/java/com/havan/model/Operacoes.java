@@ -1,6 +1,7 @@
 package com.havan.model;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 /**
@@ -18,6 +19,7 @@ public class Operacoes {
   private BigDecimal valorOriginal;
   private BigDecimal valorConvertido;
   private BigDecimal taxaCobrada;
+  private static final DecimalFormat FORMATADOR = new DecimalFormat("#,##0.00");
   
   public Operacoes(String nomeCliente, String moedaOrigem, String moedaDestino,
       BigDecimal valorOriginal, BigDecimal valorConvertido, BigDecimal taxaCobrada) {

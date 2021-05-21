@@ -69,5 +69,30 @@ public class OperacoesDAO implements InterfaceDAO<Operacoes> {
     }
     return ops;
   }
+
+  public List<Operacoes> listarPorCliente(String nomeDoCliente) {
+    Connection conn = ConnectionDatabase.getConnection();
+    List<Operacoes> ops = new ArrayList<Operacoes>();
+    try {
+      Statement state = conn.createStatement();
+      String query = "SELECT * FROM operacoes WHERE nome_cliente IN ('" + nomeDoCliente + "');";
+      ResultSet result = state.executeQuery(query);
+      while(result.next()) {
+        int id = result.getInt("id");
+        String nomeCliente = result.getString("nome_cliente");
+        String moedaOrigem = result.getString("moeda_origem");
+        String moedaDestino = result.getString("moeda_destino");
+        LocalDate dataOperacao = result.getDate("data_operacao").toLocalDate();
+        BigDecimal valorOriginal = result.getBigDecimal("valor_original");
+        BigDecimal valorConvertido = result.getBigDecimal("valor_convertido");
+        BigDecimal taxaCobrada = result.getBigDecimal("taxa_cobrada");
+        ops.add(new Operacoes(id, nomeCliente, moedaOrigem, moedaDestino, dataOperacao, valorOriginal, valorConvertido, taxaCobrada));
+      }
+      conn.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return ops;
+  }
   
 }
