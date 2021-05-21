@@ -6,8 +6,7 @@ import java.util.List;
 
 public class Calculadora {
 
-  // TAXA_DE_CAMBIO em %.
-  public static final BigDecimal TAXA_DE_CAMBIO = new BigDecimal("10.0");
+  public static final BigDecimal TAXA_DE_CAMBIO = new BigDecimal("0.10");
   static List<Moeda> moedas = new ArrayList<>();
 
   public Calculadora() {
@@ -38,6 +37,8 @@ public class Calculadora {
     Moeda moedaDeDestino = procuraMoeda(moedaDestino);
     BigDecimal valorConversao = valor;
     BigDecimal valorConvertido = moedaDeOrigem.convertePara(moedaDeDestino, valorConversao);
+    BigDecimal taxaDeCambio = valorConvertido.multiply(TAXA_DE_CAMBIO);
+    valorConvertido = valorConvertido.subtract(taxaDeCambio);
     return valorConvertido;
     } catch (NullPointerException n) {
       System.err.println("Você tentou converter uma moeda que não existe ou 2 moedas iguais.");

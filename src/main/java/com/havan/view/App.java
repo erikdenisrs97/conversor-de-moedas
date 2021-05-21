@@ -35,6 +35,7 @@ public class App {
     System.out.println("------------------------------");
     System.out.println("1 - Realizar Conversão");
     System.out.println("2 - Ver Todas as Operações");
+    System.out.println("4 - Valor Total das Taxas Cobradas");
     System.out.println("3 - Ver Valor Total das Operações");
     System.out.println("4 - Valor Total das Taxas Cobradas");
     System.out.println("------------------------------");
@@ -48,7 +49,7 @@ public class App {
         verOperacoes();
         break;
       case 3:
-
+        OperacoesPorCliente();
         break;
       case 4:
 
@@ -87,6 +88,14 @@ public class App {
       + "         " + operacao.getMoedaOrigem() + "           " + operacao.getMoedaDestino() + "            " 
       + operacao.getValorOriginal() + "            " + operacao.getValorConvertido() + "        " + operacao.getTaxaCobrada() + "%");
     }
+  }
+
+  void OperacoesPorCliente() {
+
+  }
+
+  void OperacoesPorData() {
+
   }
 
 }
