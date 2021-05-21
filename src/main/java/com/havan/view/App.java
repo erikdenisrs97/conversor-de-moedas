@@ -1,6 +1,7 @@
 package com.havan.view;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,6 +24,7 @@ public class App {
   Operacoes operacao;
   OperacoesController registrarOperacao = new OperacoesController();
   static Scanner leitura = new Scanner(System.in);
+  static List<Operacoes> ops = new ArrayList<>();
 
   public static void main( String[] args ) {
     App a = new App();
@@ -34,9 +36,9 @@ public class App {
     System.out.println("O que você deseja fazer?");
     System.out.println("------------------------------");
     System.out.println("1 - Realizar Conversão");
-    System.out.println("2 - Ver Operações");
-    System.out.println("4 - Valor Total das Taxas Cobradas");
-    System.out.println("3 - Ver Valor Total das Operações");
+    System.out.println("2 - Ver Todas as Operações ");
+    System.out.println("3 - Ver Operações por Cliente");
+    System.out.println("3 - Ver Operações por Intervalo de Datas");
     System.out.println("------------------------------");
     int i = leitura.nextInt();
     leitura.nextLine();
@@ -104,7 +106,8 @@ public class App {
   }
 
   void OperacoesPorData() {
-
+    System.out.println("Digite a data de início: ");
+    System.out.println("Digite a data de fim: ");
   }
 
 }

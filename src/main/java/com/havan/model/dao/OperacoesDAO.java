@@ -1,5 +1,6 @@
 package com.havan.model.dao;
 
+import java.lang.Thread.State;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
@@ -61,7 +62,8 @@ public class OperacoesDAO implements InterfaceDAO<Operacoes> {
         BigDecimal valorOriginal = result.getBigDecimal("valor_original");
         BigDecimal valorConvertido = result.getBigDecimal("valor_convertido");
         BigDecimal taxaCobrada = result.getBigDecimal("taxa_cobrada");
-        ops.add(new Operacoes(id, nomeCliente, moedaOrigem, moedaDestino, dataOperacao, valorOriginal, valorConvertido, taxaCobrada));
+        ops.add(new Operacoes(id, nomeCliente, moedaOrigem, moedaDestino, dataOperacao, 
+        valorOriginal, valorConvertido, taxaCobrada));
       }
       conn.close();
     } catch (SQLException e) {
@@ -78,21 +80,36 @@ public class OperacoesDAO implements InterfaceDAO<Operacoes> {
       String query = "SELECT * FROM operacoes WHERE nome_cliente IN ('" + nomeDoCliente + "');";
       ResultSet result = state.executeQuery(query);
       while(result.next()) {
-        int id = result.getInt("id");
-        String nomeCliente = result.getString("nome_cliente");
-        String moedaOrigem = result.getString("moeda_origem");
-        String moedaDestino = result.getString("moeda_destino");
-        LocalDate dataOperacao = result.getDate("data_operacao").toLocalDate();
-        BigDecimal valorOriginal = result.getBigDecimal("valor_original");
-        BigDecimal valorConvertido = result.getBigDecimal("valor_convertido");
-        BigDecimal taxaCobrada = result.getBigDecimal("taxa_cobrada");
-        ops.add(new Operacoes(id, nomeCliente, moedaOrigem, moedaDestino, dataOperacao, valorOriginal, valorConvertido, taxaCobrada));
       }
       conn.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
     return ops;
+  }
+
+  public List<Operacoes> listarPorData(String dataOrigem, String dataDestino) {
+    Connection conn = ConnectionDatabase.getConnection();
+    List<Operacoes> ops = new ArrayList<Operacoes>();
+    try {
+    Statement state = conn.createStatement();
+    String query = "SELECT * FROM operacoes WHERE data_operacao BETWEEN '" + dataOrigem + "' AND '" + dataDestino + "';";
+    ResultSet result = state.executeQuery(query);
+    while(result.next()) {
+      int id = result.getInt("id");
+      String nomeCliente = result.getString("nome_cliente");
+      String moedaOrigem = result.getString("moeda_origem");
+      String moedaDestino = result.getString("moeda_destino");
+      LocalDate dataOperacao = result.getDate("data_operacao").toLocalDate();
+      BigDecimal valorOriginal = result.getBigDecimal("valor_original");
+      BigDecimal valorConvertido = result.getBigDecimal("valor_convertido");
+      BigDecimal taxaCobrada = result.getBigDecimal("taxa_cobrada");
+      ops.add(new Operacoes(id, nomeCliente, moedaOrigem, moedaDestino, dataOperacao, valorOriginal, valorConvertido, taxaCobrada));
+    }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
   
 }
