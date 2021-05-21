@@ -22,5 +22,10 @@ public class MoedaController implements InterfaceController<Moeda> {
   public List<Moeda> listar() {
     return dao.listar();
   }
+
+  @Override
+  public Moeda procuraPorId(int id) {
+    return dao.procuraPorId(id);
+  }
   
 }

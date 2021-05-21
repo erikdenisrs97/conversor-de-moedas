@@ -50,7 +50,8 @@ public class OperacoesDAO implements InterfaceDAO<Operacoes> {
     List<Operacoes> ops = new ArrayList<Operacoes>();
     try {
       Statement state = conn.createStatement();
-      ResultSet result = state.executeQuery("SELECT * FROM operacoes");
+      String query = "SELECT * FROM operacoes";
+      ResultSet result = state.executeQuery(query);
       while(result.next()) {
         int id = result.getInt("id");
         String nomeCliente = result.getString("nome_cliente");
@@ -67,6 +68,11 @@ public class OperacoesDAO implements InterfaceDAO<Operacoes> {
       e.printStackTrace();
     }
     return ops;
+  }
+
+  @Override
+  public Operacoes procuraPorId(int id) {
+    return null;
   }
   
 }

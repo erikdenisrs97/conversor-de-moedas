@@ -22,5 +22,10 @@ public class OperacoesController implements InterfaceController<Operacoes> {
   public List<Operacoes> listar() {
     return dao.listar();
   }
+
+  @Override
+  public Operacoes procuraPorId(int id) {
+    return dao.procuraPorId(id);
+  }
   
 }

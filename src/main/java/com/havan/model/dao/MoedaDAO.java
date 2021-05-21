@@ -27,6 +27,7 @@ public class MoedaDAO implements InterfaceDAO<Moeda> {
     ps.setString(2, unidadeMonetaria);
     ps.setBigDecimal(3, valor);
     ps.execute();
+    conn.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -39,7 +40,8 @@ public class MoedaDAO implements InterfaceDAO<Moeda> {
     try {
       Connection conn = ConnectionDatabase.getConnection();
       Statement state = conn.createStatement();
-      ResultSet result = state.executeQuery("SELECT * FROM moedas");
+      String query = "SELECT * FROM moedas";
+      ResultSet result = state.executeQuery(query);
       while(result.next()) {
         String nome = result.getString("nome");
         String unidadeMonetaria = result.getString("unidade_monetaria");
@@ -51,6 +53,27 @@ public class MoedaDAO implements InterfaceDAO<Moeda> {
       e.printStackTrace();
     }
     return moedas;
+  }
+
+  @Override
+  public Moeda procuraPorId(int id) {
+    Moeda moedaProcurada;
+    try {
+      Connection conn = ConnectionDatabase.getConnection();
+      Statement state = conn.createStatement();
+      String query = "SELECT * FROM moedas WHERE id IN " + "('" + id + "');";
+      ResultSet result = state.executeQuery(query);
+      while(result.next()) {
+        String nomeMoeda = result.getString("nome");
+        String unidadeMonetaria = result.getString("unidade_monetaria");
+        BigDecimal valor = result.getBigDecimal("valor");
+        moedaProcurada = new Moeda(nomeMoeda, unidadeMonetaria, valor);
+        return moedaProcurada;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
   
 }
