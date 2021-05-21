@@ -4,20 +4,22 @@ import java.math.BigDecimal;
 
 public class Real extends Moeda {
 
-  private static final BigDecimal TAXA_DOLAR = new BigDecimal("10.0");
-  private static final BigDecimal TAXA_IENE = new BigDecimal("10.0");
+  private static final BigDecimal TAXA_DOLAR = new BigDecimal("0.19");
+  private static final BigDecimal TAXA_IENE = new BigDecimal("20.65");
 
   public Real() {
     this.setNomeMoeda("Real");
-    this.setUnidadeMonetaria("RS");
+    this.setUnidadeMonetaria("R$");
   }
 
-  public BigDecimal converteParaDolar(BigDecimal valor) {
-    return valor.multiply(TAXA_DOLAR);
+  @Override
+  public BigDecimal convertePara(Moeda moeda, BigDecimal valor) {
+    if(moeda.getNomeMoeda().contains("Dolar")) {
+      return TAXA_DOLAR.multiply(valor);
+    } else if(moeda.getNomeMoeda().contains("Iene")) {
+      return TAXA_IENE.multiply(valor);
+    }
+    return null;
   }
 
-  public BigDecimal converteParaIene(BigDecimal valor) {
-    return valor.multiply(TAXA_IENE);
-  }
-  
 }

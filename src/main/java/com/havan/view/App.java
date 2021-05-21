@@ -2,6 +2,7 @@ package com.havan.view;
 
 import java.math.BigDecimal;
 
+import com.havan.model.Calculadora;
 import com.havan.model.Real;
 
 /**
@@ -10,10 +11,9 @@ import com.havan.model.Real;
  */
 public class App {
   public static void main( String[] args ) {
-    Real r = new Real();
-    BigDecimal valor = new BigDecimal("10.0");
-    System.out.println(r.converteParaDolar(valor));
-    System.out.println(r.getUnidadeMonetaria());
-    System.out.println(r.getNomeMoeda());
+    Calculadora c = new Calculadora();
+    System.out.println(c.converteMoeda("Real", "Euro", "5.3"));
+    System.out.println(c.converteMoeda("Dolar", "Real", "1"));
+    System.out.println(c.converteMoeda("Dolar", "Iene", "1"));
   }
 }

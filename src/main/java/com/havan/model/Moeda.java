@@ -1,5 +1,6 @@
 package com.havan.model;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 public abstract class Moeda {
@@ -32,5 +33,7 @@ public abstract class Moeda {
   public void setNomeMoeda(String nomeMoeda) {
     this.nomeMoeda = nomeMoeda;
   }
+
+  public abstract BigDecimal convertePara(Moeda moeda, BigDecimal valor);
 
 }
