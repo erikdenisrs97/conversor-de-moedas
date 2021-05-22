@@ -2,6 +2,9 @@ package com.havan.model;
 
 import java.math.BigDecimal;
 
+/**
+ * A classe moeda é abstrata para Dolar, Iene e Real.
+ */
 public abstract class Moeda {
   
   private String nomeMoeda;

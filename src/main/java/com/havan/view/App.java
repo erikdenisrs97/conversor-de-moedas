@@ -1,6 +1,7 @@
 package com.havan.view;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -12,7 +13,13 @@ import com.havan.model.Operacoes;
 
 /**
  * Conversor de Moedas
- *
+ * Esse código é a 2ª parte do desafio ProWay/Havan Tech Labs 2021.
+ * Esse código é um conversor de moedas entre Iene, Real e Dolar.
+ * Todas as conversões são salvas dentro do banco de dados e 
+ * é possível extrair relatórios seguindo as intruções do menu principal.
+ * 
+ * @author Erik Rodrigues
+ * @since 1.0
  */
 public class App {
 
@@ -26,6 +33,7 @@ public class App {
   OperacoesController operacaoController = new OperacoesController();
   static Scanner leitura = new Scanner(System.in);
   static List<Operacoes> ops = new ArrayList<>();
+  public static final DecimalFormat FORMATADOR = new DecimalFormat("#,##0.00");
 
   public App() {
     Locale.setDefault(new Locale("pt", "BR")); // Mudança do Locale;
@@ -90,6 +98,7 @@ public class App {
     }
   }
 
+  // Realiza conversão entre moedas.
   void realizaConversao() {
     System.out.println("Qual é o nome do Cliente?");
     nomeCliente = leitura.nextLine();
@@ -140,12 +149,15 @@ public class App {
   }
 
   void valoresTotais() {
+    String dolar = FORMATADOR.format(operacaoController.valorTotal("Dolar"));
+    String real = FORMATADOR.format(operacaoController.valorTotal("Real"));
+    String iene = FORMATADOR.format(operacaoController.valorTotal("Iene"));
     System.out.println("Total de dólares convertidos para outras moedas: " +
-      operacaoController.valorTotal("Dolar"));
+      dolar);
     System.out.println("Total de reais convertidos para outras moedas: " + 
-      operacaoController.valorTotal("Real"));
+      real);
     System.out.println("Total de reais convertidos para outras moedas: " + 
-      operacaoController.valorTotal("Iene"));
+      iene);
   }
 
   void valoresTotaisPorData() {
@@ -190,7 +202,7 @@ public class App {
     System.out.println("Digite o nome do cliente: ");
     Scanner leitura = new Scanner(System.in);
     nomeCliente = leitura.nextLine();
-    System.out.println("Taxas pagas pelo cliente: " + nomeCliente + ":");
+    System.out.println("Taxas pagas pelo cliente: " + nomeCliente);
     List<Operacoes> ops = operacaoController.taxaTotalPorCliente(nomeCliente);
     leitura.close();
     for(Operacoes operacao : ops) {

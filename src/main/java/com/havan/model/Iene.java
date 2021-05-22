@@ -2,6 +2,9 @@ package com.havan.model;
 
 import java.math.BigDecimal;
 
+/**
+ * As taxas de conversão de Iene para outras moedas podem ser configuradas aqui.
+ */
 public class Iene extends Moeda {
   
   private static final BigDecimal TAXA_REAL = new BigDecimal("0.048");

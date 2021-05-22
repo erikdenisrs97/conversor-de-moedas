@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 /**
  * Operações
- *
+ * A classe operações é o model para salvar as operações no banco de dados.
  */
 
 public class Operacoes {

@@ -4,6 +4,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Calculadora
+ * A Calculadora é responsável por instanciar as moedas Real, Dolar e Iene.
+ * Procurar a moeda dentro da lista e realizar a conversão descontando a taxa de 10%
+ * A TAXA_DE_CAMBIO cobrada pela conversão pode ser configurada nesta Classe.
+ */
 public class Calculadora {
 
   public static final BigDecimal TAXA_DE_CAMBIO = new BigDecimal("0.10");
