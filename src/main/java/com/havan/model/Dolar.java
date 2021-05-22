@@ -1,6 +1,7 @@
 package com.havan.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * As taxas de conversão de Dolar para outras moedas podem ser configuradas aqui.
@@ -18,9 +19,9 @@ public class Dolar extends Moeda {
   @Override
   public BigDecimal convertePara(Moeda moeda, BigDecimal valor) {
     if(moeda.getNomeMoeda().contains("Iene")) {
-      return TAXA_IENE.multiply(valor);
+      return TAXA_IENE.multiply(valor).setScale(2, RoundingMode.HALF_EVEN);
     } else if(moeda.getNomeMoeda().contains("Real")) {
-      return TAXA_REAL.multiply(valor);
+      return TAXA_REAL.multiply(valor).setScale(2, RoundingMode.HALF_EVEN);
     }
     return null;
   }
