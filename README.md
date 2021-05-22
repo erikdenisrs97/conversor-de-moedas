@@ -135,10 +135,13 @@ bd.senha = <senha>
 
 1. Na IDE, basta selecionar o arquivo App.java localizado na pasta view e compilar através do botão Run e então as opções poderão ser vistas no terminal:
 
-   ![alt text](https://imgur.com/0ZeXFcs)
+  <h1 align="center">
+  <img alt="alt" title="#Havan" src="https://imgur.com/0ZeXFcs" />
+  </h1>
 
-   ![alt text](https://imgur.com/w7VRCfp)
-
+  <h1 align="center">
+  <img alt="alt" title="#Havan" src="https://imgur.com/w7VRCfp" />
+  </h1>
    
 
 2.  Também é possível compilar através do Maven: <code> https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html </code>
