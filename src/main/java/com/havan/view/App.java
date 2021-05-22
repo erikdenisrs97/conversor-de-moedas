@@ -37,11 +37,11 @@ public class App {
 
   public App() {
     Locale.setDefault(new Locale("pt", "BR")); // Mudança do Locale;
+    imprimeMenuPrincipal();
   }
 
   public static void main( String[] args ) {
     App a = new App();
-    a.imprimeMenuPrincipal();
   }
 
   void imprimeMenuPrincipal() {
@@ -137,6 +137,7 @@ public class App {
   }
 
   void OperacoesPorData() {
+    System.out.println("######### LISTA DE OPERAÇÕES POR DATA #########");
     System.out.println("Digite a data no formato: 24/05/1997");
     System.out.println("Digite a data de início: ");
     Scanner leitura = new Scanner(System.in);

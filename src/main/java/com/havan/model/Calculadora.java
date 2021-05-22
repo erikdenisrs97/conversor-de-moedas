@@ -1,6 +1,7 @@
 package com.havan.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,12 +44,15 @@ public class Calculadora {
     Moeda moedaDeOrigem = procuraMoeda(moedaOrigem);
     Moeda moedaDeDestino = procuraMoeda(moedaDestino);
     BigDecimal valorConversao = valor;
+    if(valorConversao.floatValue() < 0) {
+      valorConversao = new BigDecimal("0");
+    }
     BigDecimal valorConvertido = moedaDeOrigem.convertePara(moedaDeDestino, valorConversao);
     taxa = valorConvertido.multiply(TAXA_DE_CAMBIO);
     valorConvertido = valorConvertido.subtract(taxa);
-    return valorConvertido;
+    return valorConvertido.setScale(2, RoundingMode.HALF_EVEN);
     } catch (NullPointerException n) {
-      System.err.println("Você tentou converter uma moeda que não existe ou 2 moedas iguais.");
+      System.err.println("Você tentou converter uma moeda que não existe ou duas iguais.");
     }
     return null;
   }
