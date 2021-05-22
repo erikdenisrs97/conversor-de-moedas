@@ -28,7 +28,7 @@ public class App {
   static List<Operacoes> ops = new ArrayList<>();
 
   public App() {
-    Locale.setDefault(new Locale("pt", "BR")); // Mudança do Locale
+    Locale.setDefault(new Locale("pt", "BR")); // Mudança do Locale;
   }
 
   public static void main( String[] args ) {
@@ -43,13 +43,13 @@ public class App {
     System.out.println("1 - Realizar Conversão"); // Ok
     System.out.println("2 - Ver Todas as Operações "); // Ok
     System.out.println("3 - Ver Operações por Cliente"); // Ok
-    System.out.println("4 - Ver Operações por Intervalo de Datas"); // TERMINAR
+    System.out.println("4 - Ver Operações por Intervalo de Datas"); // Ok
     System.out.println("5 - Valor Total das Operações"); // Ok
     System.out.println("6 - Valor Total por Cliente"); // Ok
-    System.out.println("7 - Valor Total por Intervalo de Datas"); // TERMINAR
+    System.out.println("7 - Valor Total por Intervalo de Datas"); // Ok
     System.out.println("8 - Ver Total das Taxas"); // OK;
     System.out.println("9 - Taxa Total por Cliente"); // OK;
-    System.out.println("10 - Taxa Total por Intervalo de Datas"); // TERMINAR
+    System.out.println("10 - Taxa Total por Intervalo de Datas"); // OK
     System.out.println("------------------------------");
     int i = leitura.nextInt();
     leitura.nextLine();
@@ -73,7 +73,7 @@ public class App {
         valoresTotaisPorCliente();
         break;
       case 7:
-        // valoresTotaisPorData();
+        valoresTotaisPorData();
         break;
       case 8:
         taxasTotais();
@@ -82,7 +82,7 @@ public class App {
         taxasTotaisPorCliente();
         break;
       case 10:
-      taxasTotaisPorCliente();
+        taxasTotaisPorData();
         break;
       default:
         System.out.println("Você não inseriu uma opção valida.");
@@ -128,9 +128,14 @@ public class App {
   }
 
   void OperacoesPorData() {
-    List<Operacoes> ops = operacaoController.listarPorData("", "");
+    System.out.println("Digite a data no formato: 24/05/1997");
     System.out.println("Digite a data de início: ");
+    Scanner leitura = new Scanner(System.in);
+    String dataInicio = leitura.nextLine();
     System.out.println("Digite a data de fim: ");
+    String dataFim = leitura.nextLine();
+    leitura.close();
+    List<Operacoes> ops = operacaoController.listarPorData(dataInicio, dataFim);
     imprimeLista(ops);
   }
 
@@ -143,7 +148,14 @@ public class App {
       operacaoController.valorTotal("Iene"));
   }
 
-  void valoresTotaisPorData(String dataInicio, String dataFim) {
+  void valoresTotaisPorData() {
+    System.out.println("Digite a data no formato: 24/05/1997");
+    System.out.println("Digite a data de início: ");
+    Scanner leitura = new Scanner(System.in);
+    String dataInicio = leitura.nextLine();
+    System.out.println("Digite a data de fim: ");
+    String dataFim = leitura.nextLine();
+    leitura.close();
     System.out.println("Dentro do intervalo escolhido os valores totais foram:");
     System.out.println("Total de dólares convertidos para outras moedas: " +
       operacaoController.valorTotalPorData("Dolar", dataInicio, dataFim));
@@ -187,6 +199,20 @@ public class App {
   }
 
   void taxasTotaisPorData() {
+    System.out.println("Digite a data no formato: 24/05/1997");
+    System.out.println("Digite a data de início: ");
+    Scanner leitura = new Scanner(System.in);
+    String dataInicio = leitura.nextLine();
+    System.out.println("Digite a data de fim: ");
+    String dataFim = leitura.nextLine();
+    leitura.close();
+    System.out.println("Dentro do intervalo escolhido as taxas totais foram:");
+    System.out.println("Taxas totais cobradas de conversões para Dolar: " +
+      operacaoController.taxaTotalPorData("Dolar", dataInicio, dataFim));
+    System.out.println("Taxas totais cobradas de conversões para Real: " + 
+      operacaoController.taxaTotalPorData("Real", dataInicio, dataFim));
+    System.out.println("Taxas totais cobradas de conversões para Iene: " + 
+      operacaoController.taxaTotalPorData("Iene", dataInicio, dataFim));
   }
 
   void imprimeLista(List<Operacoes> ops) {

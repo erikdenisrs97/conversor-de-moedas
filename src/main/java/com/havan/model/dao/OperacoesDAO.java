@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import com.havan.model.Operacoes;
 public class OperacoesDAO implements InterfaceDAO<Operacoes> {
 
   public static final String LISTAR_TODOS = "SELECT * FROM operacoes";
+  public static final DateTimeFormatter FORMATADOR = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
   @Override
   public Operacoes inserir(Operacoes obj) {
@@ -86,7 +88,9 @@ public class OperacoesDAO implements InterfaceDAO<Operacoes> {
     List<Operacoes> ops = new ArrayList<Operacoes>();
     try {
     Statement state = conn.createStatement();
-    String query = "SELECT * FROM operacoes WHERE data_operacao BETWEEN '"+ dataInicio +"' AND '"+ dataFim +"';";
+    LocalDate datai = LocalDate.parse(dataInicio, FORMATADOR);
+    LocalDate dataf = LocalDate.parse(dataFim, FORMATADOR);
+    String query = "SELECT * FROM operacoes WHERE data_operacao BETWEEN '"+ datai +"' AND '"+ dataf +"';";
     ResultSet result = state.executeQuery(query);
     while(result.next()) {
       adicionaNaLista(result, ops);
@@ -113,15 +117,21 @@ public class OperacoesDAO implements InterfaceDAO<Operacoes> {
     return valor;
   }
 
-  public BigDecimal valorTotalPorData(String nomeMoeda, String dataOrigem, String dataDestino) {
+  public BigDecimal valorTotalPorData(String nomeMoeda, String dataInicio, String dataFim) {
     BigDecimal valor = new BigDecimal("0");
     Connection conn = ConnectionDatabase.getConnection();
     try {
       Statement state = conn.createStatement();
-      String query = "SELECT valor_original FROM operacoes WHERE moeda_origem = '"+ nomeMoeda +"' BETWEEN '"+ dataOrigem +"' AND '"+ dataDestino +"';";
+      LocalDate datai = LocalDate.parse(dataInicio, FORMATADOR);
+      LocalDate dataf = LocalDate.parse(dataFim, FORMATADOR);
+      String query = "SELECT sum(valor_original) FROM operacoes WHERE moeda_origem = '"
+      + nomeMoeda +"' AND data_operacao BETWEEN '"+ datai +"' AND '"+ dataf +"';";
       ResultSet result = state.executeQuery(query);
       while(result.next()) {
-        valor = valor.add(result.getBigDecimal("valor_original"));
+        valor = result.getBigDecimal("sum");
+        if(valor == null) {
+          valor = new BigDecimal("0");
+        }
       }
     } catch (SQLException e) {
       e.printStackTrace();
@@ -181,6 +191,28 @@ public class OperacoesDAO implements InterfaceDAO<Operacoes> {
       e.printStackTrace();
     }
     return vtpc;
+  }
+
+  public BigDecimal taxaTotalPorData(String nomeMoeda, String dataInicio, String dataFim) {
+    BigDecimal valor = new BigDecimal("0");
+    Connection conn = ConnectionDatabase.getConnection();
+    try {
+      Statement state = conn.createStatement();
+      LocalDate datai = LocalDate.parse(dataInicio, FORMATADOR);
+      LocalDate dataf = LocalDate.parse(dataFim, FORMATADOR);
+      String query = "SELECT sum(taxa_cobrada) FROM operacoes WHERE moeda_origem = '"
+      + nomeMoeda +"' AND data_operacao BETWEEN '"+ datai +"' AND '"+ dataf +"';";
+      ResultSet result = state.executeQuery(query);
+      while(result.next()) {
+        valor = result.getBigDecimal("sum");
+        if(valor == null) {
+          valor = new BigDecimal("0");
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return valor;
   }
 
   /* Função utilizada para inserir objetos na lista

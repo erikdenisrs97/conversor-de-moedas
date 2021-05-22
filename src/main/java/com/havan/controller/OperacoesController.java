@@ -51,5 +51,9 @@ public class OperacoesController implements InterfaceController<Operacoes> {
   public List<Operacoes> taxaTotalPorCliente(String nomeCliente) {
     return dao.taxaTotalPorCliente(nomeCliente);
   }
+
+  public BigDecimal taxaTotalPorData(String nomeMoeda, String dataInicio, String dataFim) {
+    return dao.taxaTotalPorData(nomeMoeda, dataInicio, dataFim);
+  }
   
 }
