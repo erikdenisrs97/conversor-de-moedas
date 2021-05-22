@@ -135,9 +135,9 @@ bd.senha = <senha>
 
 1. Na IDE, basta selecionar o arquivo App.java localizado na pasta view e compilar através do botão Run e então as opções poderão ser vistas no terminal:
 
-   ![image-20210522151101619](/home/erikdenis/.config/Typora/typora-user-images/image-20210522151101619.png)
+   ![alt text](https://ibb.co/TKcZDGx)
 
-   ![image-20210522151212748](/home/erikdenis/.config/Typora/typora-user-images/image-20210522151212748.png)
+   ![alt text](https://ibb.co/GR8mP8H)
 
    
 
