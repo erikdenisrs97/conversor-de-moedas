@@ -1,11 +1,13 @@
 package com.havan.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 /**
  * Operações
- *
+ * A classe operações é o model para salvar as operações no banco de dados.
  */
 
 public class Operacoes {
@@ -18,7 +20,9 @@ public class Operacoes {
   private BigDecimal valorOriginal;
   private BigDecimal valorConvertido;
   private BigDecimal taxaCobrada;
+  private static final DecimalFormat FORMATADOR = new DecimalFormat("#,##0.00");
   
+  // Construtor para criar uma operação.
   public Operacoes(String nomeCliente, String moedaOrigem, String moedaDestino,
       BigDecimal valorOriginal, BigDecimal valorConvertido, BigDecimal taxaCobrada) {
     this.nomeCliente = nomeCliente;
@@ -30,6 +34,7 @@ public class Operacoes {
     this.taxaCobrada = taxaCobrada;
   }
 
+  // Construtor para imprimir uma operação.
   public Operacoes(Integer id, String nomeCliente, String moedaOrigem, String moedaDestino, LocalDate dataOperacao,
     BigDecimal valorOriginal, BigDecimal valorConvertido, BigDecimal taxaCobrada) {
   this.id = id;
@@ -40,6 +45,13 @@ public class Operacoes {
   this.valorOriginal = valorOriginal;
   this.valorConvertido = valorConvertido;
   this.taxaCobrada = taxaCobrada;
+  }
+
+  // Construtor para imprimir valor Total Por Cliente.
+  public Operacoes(String nomeCliente, String moedaOrigem, BigDecimal valorOriginal) {
+    this.nomeCliente = nomeCliente;
+    this.moedaOrigem = moedaOrigem;
+    this.valorOriginal = valorOriginal;
   }
 
   public BigDecimal getTaxaCobrada() {
@@ -54,8 +66,20 @@ public class Operacoes {
     return valorConvertido;
   }
 
+  public String getValorConvertidoFormatado() {
+    return FORMATADOR.format(valorConvertido);
+  }
+
+  public String getValorOriginalFormatado() {
+    return FORMATADOR.format(valorOriginal);
+  }
+
+  public String getTaxaCobradaFormatada() {
+    return FORMATADOR.format(taxaCobrada);
+  }
+
   public void setValorConvertido(BigDecimal valorConvertido) {
-    this.valorConvertido = valorConvertido;
+    this.valorConvertido = valorConvertido.setScale(2, RoundingMode.HALF_EVEN);
   }
 
   public BigDecimal getValorOriginal() {
@@ -63,7 +87,7 @@ public class Operacoes {
   }
 
   public void setValorOriginal(BigDecimal valorOriginal) {
-    this.valorOriginal = valorOriginal;
+    this.valorOriginal = valorOriginal.setScale(2, RoundingMode.HALF_EVEN);
   }
 
   public LocalDate getDataOperacao() {
