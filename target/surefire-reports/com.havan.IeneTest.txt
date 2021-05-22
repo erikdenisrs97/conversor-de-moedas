@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: com.havan.AppTest
+Test set: com.havan.IeneTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in com.havan.AppTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in com.havan.IeneTest
