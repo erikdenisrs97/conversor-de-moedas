@@ -135,9 +135,9 @@ bd.senha = <senha>
 
 1. Na IDE, basta selecionar o arquivo App.java localizado na pasta view e compilar através do botão Run e então as opções poderão ser vistas no terminal:
 
-   ![alt text](https://ibb.co/TKcZDGx)
+   ![alt text](https://imgur.com/0ZeXFcs)
 
-   ![alt text](https://ibb.co/GR8mP8H)
+   ![alt text](https://imgur.com/w7VRCfp)
 
    
 
