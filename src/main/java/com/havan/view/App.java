@@ -110,13 +110,13 @@ public class App {
     valorOriginal = leitura.nextBigDecimal();
     Calculadora c = new Calculadora();
     valorConvertido = c.converteMoeda(moedaOrigem, moedaDestino, valorOriginal);
-    String valorFormatado = operacao.getValorConvertidoFormatado();
     taxaCobrada = Calculadora.taxa;
-    System.out.println("Você converteu " + moedaOrigem + " para " + moedaDestino);
-    System.out.println("Valor da conversão: " + c.procuraMoeda(moedaDestino).getUnidadeMonetaria() + valorFormatado);
     operacao = new Operacoes(nomeCliente, moedaOrigem, moedaDestino, valorOriginal,
      valorConvertido, taxaCobrada);
     operacaoController.inserir(operacao);
+    String valorFormatado = operacao.getValorConvertidoFormatado();
+    System.out.println("Você converteu " + moedaOrigem + " para " + moedaDestino);
+    System.out.println("Valor da conversão: " + c.procuraMoeda(moedaDestino).getUnidadeMonetaria() + valorFormatado);
     leitura.close();
   }
 
