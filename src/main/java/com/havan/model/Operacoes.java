@@ -37,14 +37,14 @@ public class Operacoes {
   // Construtor para imprimir uma operação.
   public Operacoes(Integer id, String nomeCliente, String moedaOrigem, String moedaDestino, LocalDate dataOperacao,
     BigDecimal valorOriginal, BigDecimal valorConvertido, BigDecimal taxaCobrada) {
-  this.id = id;
-  this.nomeCliente = nomeCliente;
-  this.moedaOrigem = moedaOrigem;
-  this.moedaDestino = moedaDestino;
-  this.dataOperacao = dataOperacao;
-  this.valorOriginal = valorOriginal;
-  this.valorConvertido = valorConvertido;
-  this.taxaCobrada = taxaCobrada;
+    this.id = id;
+    this.nomeCliente = nomeCliente;
+    this.moedaOrigem = moedaOrigem;
+    this.moedaDestino = moedaDestino;
+    this.dataOperacao = dataOperacao;
+    this.valorOriginal = valorOriginal;
+    this.valorConvertido = valorConvertido;
+    this.taxaCobrada = taxaCobrada;
   }
 
   // Construtor para imprimir valor Total Por Cliente.
