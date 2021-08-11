@@ -4,27 +4,7 @@
 
 ## Sobre o Programa:
 
-------
-
-Esse programa faz parte da 2ª parte do teste solicitado pelo programa ProWay/Havan Tech Labs 2021.
-
 Trata-se de um conversor básico entre moedas (Iene, Real e Dolar) com capacidade de armazenamento em banco de dados e extração de relatórios.
-
-Requisitos Implementados:
-
-- [x] Operações de conversão salvas no banco
-
-- [x] Lista de operações
-
-- [x] Valor total das operações
-
-- [x] Valor total das taxas cobradas
-
-- [x] Relatórios filtrados por intervalo de tempo e cliente
-
-- [ ] Cadastro de Valores de Conversão
-
-  
 
 ## Os Usuários Podem:
 
